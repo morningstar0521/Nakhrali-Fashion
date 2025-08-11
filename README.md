@@ -14,8 +14,9 @@ A modern, production-ready e-commerce platform for ethnic jewelry with Vue.js fr
 ## ✨ Features
 
 ### 🔐 Authentication & Security
-- JWT-based authentication
+- Stronger authentication with Google Auth integration
 - Role-based access control (User, Admin, SuperAdmin)
+- JWT-based authentication
 - Password encryption with bcrypt
 - Email verification
 - Password reset functionality
@@ -25,10 +26,22 @@ A modern, production-ready e-commerce platform for ethnic jewelry with Vue.js fr
 - Product catalog with categories and collections
 - Advanced search and filtering
 - Shopping cart and wishlist
-- Order management and tracking
-- Payment integration (Stripe, Razorpay)
 - Product reviews and ratings
 - Inventory management
+
+### 💳 Payment Gateway
+- Integrated with Razorpay for seamless and secure online transactions.
+
+### 💻 Dashboard Features
+- **Separate Dashboards:** Dedicated admin and user dashboards for tailored experiences.
+- **User Dashboard:** View order history, manage profile, and track orders.
+- **Admin Dashboard:**
+    - Comprehensive overview of sales, orders, and users.
+    - Manage products (add, edit, delete).
+    - Process and update order statuses.
+    - Manage users and their roles.
+    - View and moderate product reviews.
+    - Access sales reports and analytics.
 
 ### 🎨 Modern UI/UX
 - Responsive design for all devices

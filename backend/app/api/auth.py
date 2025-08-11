@@ -438,25 +438,32 @@ def google_callback():
         # Check if user exists
         user = User.query.filter_by(email=userinfo['email'].lower()).first()
         
-        if not user:
+        if user:
+            # User exists
+            if not user.google_id:
+                # User exists but doesn't have Google ID, link account
+                user.google_id = userinfo.get('sub') # Google's unique user ID
+                user.is_verified = True # Google already verified the email
+                db.session.commit()
+            # If user exists and has google_id, proceed to login
+
+        else:
             # Create new user
             user = User(
                 email=userinfo['email'],
                 password=str(uuid.uuid4()),  # Generate random password
                 first_name=userinfo.get('given_name', ''),
                 last_name=userinfo.get('family_name', ''),
-                is_verified=True  # Google already verified the email
+                google_id=userinfo.get('sub'), # Store Google's unique user ID
+                is_verified=True # Google already verified the email
             )
-            
             db.session.add(user)
             db.session.flush()  # Get user ID before committing
-            
             # Create user profile
             profile_data = {
                 'user_id': user.id,
                 'profile_picture': userinfo.get('picture')
             }
-            
             profile = UserProfile(**profile_data)
             db.session.add(profile)
             db.session.commit()

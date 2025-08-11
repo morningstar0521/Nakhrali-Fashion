@@ -736,7 +736,7 @@ const placeOrder = async () => {
       
       if (orderResponse.id) {
         // Initialize Razorpay payment
-        const razorpayOptions = {
+        const options = {
           key: config.public.razorpayKey, // From your Razorpay Dashboard
           amount: calculateTotal() * 100, // Amount in smallest currency unit (paise)
           currency: 'INR',
@@ -786,9 +786,9 @@ const placeOrder = async () => {
             }
           }
         }
-        
         // Open Razorpay payment form
-        const razorpay = new window.Razorpay(razorpayOptions)
+ if (process.client && window.Razorpay) {
+          const razorpay = new window.Razorpay(options)
         razorpay.open()
       }
     } else if (selectedPaymentMethod.value === 'cod') {

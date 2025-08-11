@@ -1,0 +1,40 @@
+{
+  "name": "nakhrali-fashion",
+  "version": "1.0.0",
+  "description": "Complete e-commerce platform for ethnic jewelry",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && python run.py",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && pip install -r requirements.txt",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && python -m pytest tests/",
+    "test:frontend": "cd frontend && npm run test",
+    "setup": "npm run setup:backend && npm run setup:frontend",
+    "setup:backend": "cd backend && pip install -r requirements.txt && flask db upgrade && flask seed-db",
+    "setup:frontend": "cd frontend && npm install",
+    "deploy": "npm run deploy:backend && npm run deploy:frontend",
+    "deploy:backend": "cd backend && python deploy.py",
+    "deploy:frontend": "cd frontend && npm run build",
+    "clean": "rm -rf node_modules && cd frontend && rm -rf node_modules && cd ../backend && rm -rf venv"
+  },
+  "keywords": [
+    "e-commerce",
+    "jewelry",
+    "vue",
+    "flask",
+    "nuxt",
+    "postgresql"
+  ],
+  "author": "Nakhrali Fashion",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+} 

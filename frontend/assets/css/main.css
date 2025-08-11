@@ -1,0 +1,323 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom CSS Variables */
+:root {
+  --primary-rose-gold: #B76E79;
+  --secondary-deep-maroon: #8B2635;
+  --accent-matte-gold: #D4AF37;
+  --neutral-ivory: #FFFFF0;
+  --text-dark: #1F2937;
+  --text-light: #6B7280;
+  --border-light: #E5E7EB;
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  background-color: var(--neutral-ivory);
+  line-height: 1.6;
+}
+
+/* Dark mode styles for body */
+.dark body {
+  color: #F9FAFB;
+  background-color: #111827;
+}
+
+/* Typography */
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-luxury {
+  font-family: 'Cinzel', serif;
+}
+
+.font-body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Custom Components */
+.btn-primary {
+  @apply bg-rose-gold hover:bg-deep-maroon text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md;
+}
+
+.btn-secondary {
+  @apply bg-transparent border-2 border-rose-gold text-rose-gold hover:bg-rose-gold hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-300;
+}
+
+.dark .btn-secondary {
+  @apply text-rose-gold hover:text-white;
+}
+
+.btn-outline {
+  @apply bg-transparent border border-gray-300 text-gray-700 hover:border-rose-gold hover:text-rose-gold font-medium py-2 px-4 rounded-md transition-all duration-300;
+}
+
+.dark .btn-outline {
+  @apply border-gray-600 text-gray-300 hover:text-rose-gold;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-soft hover:shadow-medium transition-all duration-300;
+}
+
+.dark .card {
+  @apply bg-gray-800 border-gray-700 text-white;
+}
+
+.card-luxury {
+  @apply bg-white rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 border border-gray-100;
+}
+
+.dark .card-luxury {
+  @apply bg-gray-800 border-gray-700 text-white;
+}
+
+.input-field {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-gold focus:border-transparent transition-all duration-300;
+}
+
+.dark .input-field {
+  @apply bg-gray-800 border-gray-700 text-white;
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s infinite;
+}
+
+/* Luxury Effects */
+.gradient-luxury {
+  background: linear-gradient(135deg, var(--primary-rose-gold) 0%, var(--accent-matte-gold) 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-rose-gold) 0%, var(--accent-matte-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Product Card Styles */
+.product-card {
+  @apply relative overflow-hidden rounded-xl bg-white shadow-soft hover:shadow-medium transition-all duration-500 transform hover:-translate-y-2;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-image {
+  @apply transition-transform duration-500;
+}
+
+.product-overlay {
+  @apply absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center;
+}
+
+.product-actions {
+  @apply absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+}
+
+/* Navigation Styles */
+.nav-link {
+  @apply relative text-gray-700 hover:text-rose-gold font-medium transition-colors duration-300;
+}
+
+.dark .nav-link {
+  @apply text-gray-300 hover:text-rose-gold;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-rose-gold transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+.nav-link.active::after {
+  @apply w-full;
+}
+
+/* Footer Styles */
+.footer-link {
+  @apply text-gray-600 hover:text-rose-gold transition-colors duration-300;
+}
+
+/* Loading Spinner */
+.spinner {
+  @apply animate-spin rounded-full border-4 border-gray-200 border-t-rose-gold;
+}
+
+/* Toast Styles */
+.toast-success {
+  @apply bg-green-500 text-white;
+}
+
+.toast-error {
+  @apply bg-red-500 text-white;
+}
+
+.toast-warning {
+  @apply bg-yellow-500 text-white;
+}
+
+.toast-info {
+  @apply bg-blue-500 text-white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .btn-primary, .btn-secondary {
+    @apply py-2 px-4 text-sm;
+  }
+}
+
+/* Dark Mode Support - Now using class-based approach instead of media query */
+.dark {
+  --text-dark: #F9FAFB;
+  --text-light: #D1D5DB;
+  --border-light: #374151;
+}
+
+/* Text colors for dark mode */
+.dark .text-gray-900 {
+  @apply text-gray-100;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-200;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-400;
+}
+
+.dark .text-gray-500 {
+  @apply text-gray-400;
+}
+
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .border-gray-200 {
+  @apply border-gray-700;
+}
+
+.dark .shadow-sm {
+  @apply shadow-none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-rose-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-deep-maroon);
+}
+
+/* Focus Styles for Accessibility */
+*:focus {
+  outline: 2px solid var(--primary-rose-gold);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
